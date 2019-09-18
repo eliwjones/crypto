@@ -21,8 +21,9 @@ All you need to trust is the PR above.
 # How do I verify this hasn't been changed from the PR?
 ```
 cd ~
-git clone git@github.com:eliwjones/elliptic.git
+git clone git@github.com:eliwjones/crypto.git
 git clone git@github.com:golang/go.git go_master
-cp ~/go_master/src/crypto/elliptic/* ~/elliptic/.
-cd ~/elliptic && git diff
+cp ~/go_master/src/crypto/elliptic/* ~/crypto/elliptic/.
+cp -r ~/go_master/src/crypto/ecdsa/* ~/crypto/ecdsa/.
+cd ~/crypto && git diff
 ```
