@@ -40,6 +40,7 @@ func TestKeyGeneration(t *testing.T) {
 	testKeyGeneration(t, elliptic.P256(), "p256")
 	testKeyGeneration(t, elliptic.P384(), "p384")
 	testKeyGeneration(t, elliptic.P521(), "p521")
+	testKeyGeneration(t, elliptic.Secp256k1(), "secp256k1")
 }
 
 func BenchmarkSignP256(b *testing.B) {
@@ -129,6 +130,7 @@ func TestSignAndVerify(t *testing.T) {
 	testSignAndVerify(t, elliptic.P256(), "p256")
 	testSignAndVerify(t, elliptic.P384(), "p384")
 	testSignAndVerify(t, elliptic.P521(), "p521")
+	testSignAndVerify(t, elliptic.Secp256k1(), "secp256k1")
 }
 
 func testNonceSafety(t *testing.T, c elliptic.Curve, tag string) {
@@ -166,6 +168,7 @@ func TestNonceSafety(t *testing.T) {
 	testNonceSafety(t, elliptic.P256(), "p256")
 	testNonceSafety(t, elliptic.P384(), "p384")
 	testNonceSafety(t, elliptic.P521(), "p521")
+	testNonceSafety(t, elliptic.Secp256k1(), "secp256k1")
 }
 
 func testINDCCA(t *testing.T, c elliptic.Curve, tag string) {
@@ -201,6 +204,7 @@ func TestINDCCA(t *testing.T) {
 	testINDCCA(t, elliptic.P256(), "p256")
 	testINDCCA(t, elliptic.P384(), "p384")
 	testINDCCA(t, elliptic.P521(), "p521")
+	testINDCCA(t, elliptic.Secp256k1(), "secp256k1")
 }
 
 func fromHex(s string) *big.Int {
@@ -342,12 +346,13 @@ func TestNegativeInputs(t *testing.T) {
 	testNegativeInputs(t, elliptic.P256(), "p256")
 	testNegativeInputs(t, elliptic.P384(), "p384")
 	testNegativeInputs(t, elliptic.P521(), "p521")
+	testNegativeInputs(t, elliptic.Secp256k1(), "secp256k1")
 }
 
 func TestZeroHashSignature(t *testing.T) {
 	zeroHash := make([]byte, 64)
 
-	for _, curve := range []elliptic.Curve{elliptic.P224(), elliptic.P256(), elliptic.P384(), elliptic.P521()} {
+	for _, curve := range []elliptic.Curve{elliptic.P224(), elliptic.P256(), elliptic.P384(), elliptic.P521(), elliptic.Secp256k1()} {
 		privKey, err := GenerateKey(curve, rand.Reader)
 		if err != nil {
 			panic(err)
