@@ -30,7 +30,7 @@ import (
 	"crypto"
 	"crypto/aes"
 	"crypto/cipher"
-	"crypto/elliptic"
+	"github.com/eliwjones/crypto/elliptic"
 	"crypto/sha512"
 	"encoding/asn1"
 	"errors"
