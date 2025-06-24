@@ -18,16 +18,6 @@ You can use a golang lib that wraps a bunch of C headers from who knows where, o
 
 All you need to trust is the PR above.
 
-# How do I verify this hasn't been changed from the PR?
-```
-cd ~
-git clone git@github.com:eliwjones/crypto.git
-git clone git@github.com:golang/go.git go_master
-cp ~/go_master/src/crypto/elliptic/* ~/crypto/elliptic/.
-cp -r ~/go_master/src/crypto/ecdsa/* ~/crypto/ecdsa/.
-cd ~/crypto && git diff
-```
-
 # Tests
 ```
 git clone git@github.com:eliwjones/crypto.git
@@ -50,4 +40,14 @@ go test -v ./...
 go run main.go
 signature: (0x77d18512ce3462002feeeb9d340f8f3f073bdecf1032f062867c3a0119dd5362, 0x91b6d18b61bfa3501434c7f7ea28554adefb32225d2b9c6fcf34f76d105621a3)
 signature verified: true
+```
+
+# How do I verify this hasn't been changed from the PR?
+```
+git clone git@github.com:eliwjones/crypto.git
+git clone git@github.com:golang/go.git go_master
+cd go_master && git checkout a0127c1921 && cd ..  # get code from when this patch was made.
+cp go_master/src/crypto/elliptic/* crypto/elliptic/.
+cp -r go_master/src/crypto/ecdsa/* crypto/ecdsa/.
+cd ~/crypto && git diff
 ```
